@@ -115,6 +115,28 @@ public class DoublyLinkedList<E> {
     }
 
     public void group(){
+        java.util.ArrayList<E> nulls = new java.util.ArrayList<>();
+        java.util.ArrayList<E> others = new java.util.ArrayList<>();
 
+        Node<E> current = header.getNext();
+        while (current != trailer) {
+            if (current.getElement() == null) {
+                nulls.add(null);
+            } else {
+                others.add(current.getElement());
+            }
+            current = current.getNext();
+        }
+
+        while (!isEmpty()) {
+            removeFirst();
+        }
+
+        for (int i = 0; i < nulls.size(); i++) {
+            addLast(nulls.get(i));
+        }
+        for (int i = 0; i < others.size(); i++) {
+            addLast(others.get(i));
+        }
     }
 }
